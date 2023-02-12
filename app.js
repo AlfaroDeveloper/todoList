@@ -65,6 +65,10 @@ function displayData(){
 
 // ADD TASK
 function addTask(event){
+    if(task.value === ''){
+        alert('Cannot Add Blank Text');
+    }
+
     // Create elements 
     let taskListItem = document.createElement('li');
     let taskTextElement = document.createElement('p');
@@ -134,8 +138,10 @@ function filterTasks(input){
 // REMOVE TASK 
 function removeTask(e){
     if(e.target.className === 'delete btn bg-danger bg-gradient fw-bold m-2'){
+        if(confirm('Are You Sure?')){
         e.target.parentElement.parentElement.remove();
         removeFromLocalStorage(e.target.parentElement.parentElement.firstChild);
+        }
     }
 }
 

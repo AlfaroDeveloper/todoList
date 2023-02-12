@@ -2,8 +2,23 @@
     display: flex;
     align-items: row;
     justify-content: space-between;
-
     border: none;
+}
+
+
+.btn{
+    width: 6rem;
+}
+
+@media (max-width: 500px) {
+    .list-group-item{
+        display: block;
+        text-align: center;
+       
+    }
+    .list-group-item p{
+        text-align: center;
+    }
 }
 
 
