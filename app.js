@@ -60,14 +60,12 @@ function displayData(){
     taskList.appendChild(taskListItem);
 
     deleteBtn.addEventListener('click', removeTask);
+    editBtn.addEventListener('click', editTask);
     });
 }
 
 // ADD TASK
 function addTask(event){
-    if(task.value === ''){
-        alert('Cannot Add Blank Text');
-    }
 
     // Create elements 
     let taskListItem = document.createElement('li');
@@ -92,6 +90,12 @@ function addTask(event){
     taskListItem.appendChild(editButtonHolder);
     taskList.appendChild(taskListItem);
 
+    if(task.value === ''){
+        alert('Cannot Add Blank Text');
+        removeTask();
+        
+    }
+
     // local Storage 
     addToLocalStorage(task.value);
 
@@ -100,6 +104,8 @@ function addTask(event){
 
     // Clear task input field 
     task.value = '';
+
+    editBtn.addEventListener('click', editTask);
 
     // Prevent Default Page Reload 
     event.preventDefault();
@@ -119,6 +125,13 @@ function addToLocalStorage(input){
 }
 
 // EDIT TASK
+function editTask(e){
+    if(e.target.className === 'edit btn bg-primary bg-gradient fw-bold m-2'){
+        task.value = e.target.parentElement.parentElement.firstChild.innerText;
+        e.target.parentElement.parentElement.remove();
+        removeFromLocalStorage(e.target.parentElement.parentElement.firstChild);
+    }
+}
 
 // FILTER TASKS 
 function filterTasks(input){
